@@ -3,6 +3,11 @@ const MAX_HISTORY_LENGTH = 5;
 // Initialize storage on installation
 chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.local.set({ clipboardHistory: [] });
+  chrome.storage.sync.get("maxHistoryLength", (data) => {
+    if (data.maxHistoryLength === undefined) {
+      chrome.storage.sync.set({ maxHistoryLength: 5 }); // Default value
+    }
+  });
   console.log("Clipboard History Manager initialized.");
 });
 
@@ -33,12 +38,17 @@ function handleNewCopy(text) {
     // Add the new item to the beginning of the array
     history.unshift(text);
 
-    // Trim the array to the maximum length
-    if (history.length > MAX_HISTORY_LENGTH) {
-      history = history.slice(0, MAX_HISTORY_LENGTH);
-    }
+    // Get max history length from sync storage
+    chrome.storage.sync.get("maxHistoryLength", (settings) => {
+      const MAX_HISTORY_LENGTH = settings.maxHistoryLength || 5; // Use default if not set
 
-    // Save the updated history
-    chrome.storage.local.set({ clipboardHistory: history });
+      // Trim the array to the maximum length
+      if (history.length > MAX_HISTORY_LENGTH) {
+        history = history.slice(0, MAX_HISTORY_LENGTH);
+      }
+
+      // Save the updated history
+      chrome.storage.local.set({ clipboardHistory: history });
+    });
   });
 }

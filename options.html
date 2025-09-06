@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clipboard History Settings</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        label { display: block; margin-bottom: 5px; }
+        input[type="number"] { width: 100px; padding: 8px; margin-bottom: 10px; }
+        button { padding: 10px 15px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #45a049; }
+        #status { margin-top: 10px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Clipboard History Settings</h1>
+    <label for="historyLength">Maximum History Length:</label>
+    <input type="number" id="historyLength" min="1" value="100">
+    <button id="saveButton">Save</button>
+    <div id="status"></div>
+    <script src="options.js"></script>
+</body>
+</html>
