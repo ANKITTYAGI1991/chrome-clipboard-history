@@ -1,0 +1,67 @@
+#chm-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2147483646; /* One less than the container */
+  }
+  
+  #chm-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    max-width: 90%;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 2147483647; /* Highest possible z-index */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    color: #333;
+    padding: 15px;
+    max-height: 70vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #chm-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a73e8;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .chm-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 12px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    transition: background-color 0.2s ease;
+    overflow: hidden; /* Important for text truncation */
+  }
+  
+  .chm-item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .chm-item-index {
+    font-weight: bold;
+    color: #555;
+    margin-right: 10px;
+  }
+  
+  .chm-item-text {
+    white-space: pre-wrap;
+    word-break: break-all;
+    max-height: 80px; /* Limit height of long items */
+    overflow-y: auto;
+    flex-grow: 1;
+  }
