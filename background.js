@@ -27,10 +27,8 @@ function handleNewCopy(text) {
   chrome.storage.local.get("clipboardHistory", (data) => {
     let history = data.clipboardHistory || [];
 
-    // Avoid adding duplicates of the most recent item
-    if (history.length > 0 && history[0] === text) {
-      return;
-    }
+    // Remove existing instances of the text to ensure uniqueness
+    history = history.filter(item => item !== text);
 
     // Add the new item to the beginning of the array
     history.unshift(text);
